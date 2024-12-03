@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import mongoSanitize from 'express-mongo-sanitize';
 import connectDB from './config/db.js';
 import { errorHandlerMiddelware } from './middleware/errorHandler.middleware.js';
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}))
 
+app.use(mongoSanitize());
 
 app.use('/api/auth',authRouter);
 
